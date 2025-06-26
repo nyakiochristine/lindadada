@@ -44,3 +44,7 @@ UserSchema.methods.matchPassword = async function(password) {
 };
 
 module.exports = mongoose.model('User', UserSchema);
+// This code defines a Mongoose schema for a User model in a MongoDB database.
+// It includes fields for name, email, password, role, clinic reference, and createdAt timestamp.
+// The schema also includes middleware for hashing passwords before saving and a method for comparing passwords.
+// The User model can be used to manage user accounts in the Cervical Cancer Platform, allowing

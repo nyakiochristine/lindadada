@@ -1,21 +1,41 @@
 const mongoose = require('mongoose');
 
 const PatientSchema = new mongoose.Schema({
-  nationalId: { type: String, required: true, unique: true },
-  age: { type: Number, required: true },
-  hpvStatus: { type: String, enum: ['positive', 'negative', 'unknown'] },
-  screeningHistory: [{
-    date: Date,
-    result: String,
-    facility: String
-  }],
-  riskScore: { type: Number, default: 0 },
-  lastAppointment: Date,
+  nationalId: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
+  lastScreening: Date,
+  hpvStatus: {
+    type: String,
+    enum: ['positive', 'negative', 'unknown']
+  },
+  riskScore: Number,
   nextAppointment: Date,
-  clinicId: { type: mongoose.Schema.Types.ObjectId, ref: 'Clinic' }
-}, { timestamps: true });
+  clinician: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
 module.exports = mongoose.model('Patient', PatientSchema);
 // This code defines a Mongoose schema for a Patient model in a MongoDB database.
-// It includes fields for national ID, age, HPV status, screening history, risk score,
-// last and next appointment dates, and a reference to a clinic. The schema also
+// It includes fields for national ID, name, age, phone number, last screening date,
+// HPV status, risk score, next appointment date, clinician reference, and createdAt timestamp.
