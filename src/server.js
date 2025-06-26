@@ -5,6 +5,8 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 
+
+
 // Import the cron job to initialize it
 require('./services/appointmentReminder');
 
