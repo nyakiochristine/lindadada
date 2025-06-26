@@ -38,12 +38,9 @@ app.post('/api/predict', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-// This code initializes the Express server for the Cervical Cancer Platform.
-// It connects to the MongoDB database, sets up middleware for JSON parsing and CORS,
+// code initializes the Express server for the Cervical Cancer Platform.
+// connects to the MongoDB database, sets up middleware for JSON parsing and CORS,
 // and defines routes for authentication and patient management.
-// It also includes an AI endpoint for predicting cervical cancer risk based on patient data.
+//  includes an AI endpoint for predicting cervical cancer risk based on patient data.
 // The server listens on a specified port, defaulting to 5000 if not set in the environment variables.
-// Additionally, it imports and initializes a cron job for appointment reminders, ensuring that patients
-// receive timely notifications about their appointments.
-// The AI service is used to predict risk scores based on patient data, which can be accessed
-// through a POST request to the `/api/predict` endpoint.   
+// imports and initializes a cron job for appointment remindersss  
