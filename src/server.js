@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Import and initialize cron job (runs on import)
 require('./services/appointmentReminder');
@@ -20,6 +21,7 @@ connectDB();
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/patients', patientRoutes);
+app.use('/api/admin', adminRoutes);
 
 // AI Endpoint
 const { predictRisk } = require('./services/aiService');
