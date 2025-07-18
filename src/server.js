@@ -5,6 +5,8 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+import adminRoutes from './routes/adminRoutes.js';
+import clinicianRoutes from './routes/clinicianRoutes.js';
 
 // Import and initialize cron job (runs on import)
 require('./services/appointmentReminder');
@@ -22,6 +24,7 @@ connectDB();
 app.use('/api/auth', authRoutes);
 app.use('/api/patients', patientRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/clinicians', clinicianRoutes);
 
 // AI Endpoint
 const { predictRisk } = require('./services/aiService');
