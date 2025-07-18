@@ -3,7 +3,6 @@ import Admin from '../models/Admin.js';
 import Clinician from '../models/Clinician.js';
 import Patient from '../models/Patient.js';
 
-
 /**
  * Helper function to get token from header and verify it
  */

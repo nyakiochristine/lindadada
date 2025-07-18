@@ -12,3 +12,4 @@ const inventorySchema = new mongoose.Schema({
 
 const Inventory = mongoose.model('Inventory', inventorySchema);
 export default Inventory;
+// This code defines a Mongoose schema for an Inventory model in a MongoDB database.
