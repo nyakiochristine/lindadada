@@ -3,12 +3,7 @@ import Admin from '../models/Admin.js';
 import Clinician from '../models/Clinician.js';
 import Patient from '../models/Patient.js';
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 1fbaa4e7b2dbca5d1de16c1bf0d6718db5d2df7d
 /**
  * Helper function to get token from header and verify it
  */

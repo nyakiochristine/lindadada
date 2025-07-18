@@ -19,15 +19,9 @@ adminSchema.methods.comparePassword = function(candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-// Example method to generate appointment message
-adminSchema.methods.getFollowUpMessage = function(date) {
-  if (!(date instanceof Date)) {
-    throw new Error('Invalid date provided');
-  }
-  return `Your follow-up appointment is scheduled for ${date.toLocaleDateString()}.`;
-};
-
 const Admin = mongoose.model('Admin', adminSchema);
 export default Admin;
-// This code defines a Mongoose schema for an Admin model in a MongoDB database.
-
+    `Your follow-up appointment is scheduled for ${date.toLocaleDateString()}.`;
+    // This code defines a Mongoose schema for an Admin model in a MongoDB database.}
+    
+      
