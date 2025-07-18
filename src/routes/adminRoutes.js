@@ -11,3 +11,4 @@ router.post('/login', loginAdmin);
 router.get('/aggregates', protectAdmin, getAggregates);
 
 export default router;
+// This code defines the admin routes for the Cervical Cancer Platform.

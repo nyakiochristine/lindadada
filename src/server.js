@@ -1,12 +1,16 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-import adminRoutes from './routes/adminRoutes.js';
-import clinicianRoutes from './routes/clinicianRoutes.js';
+const clinicianRoutes = require('./routes/clinicianRoutes');
+import appointmentRoutes from './routes/appointmentRoutes.js';
+import inventoryRoutes from './routes/InventoryRoutes.js';
+
+
 
 // Import and initialize cron job (runs on import)
 require('./services/appointmentReminder');
@@ -25,6 +29,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/patients', patientRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/clinicians', clinicianRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 // AI Endpoint
 const { predictRisk } = require('./services/aiService');
