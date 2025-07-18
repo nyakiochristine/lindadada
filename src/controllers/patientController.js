@@ -1,9 +1,9 @@
-const Patient = require('../models/Patient');
-const { predictRisk } = require('../services/aiService');
-const { sendSMS } = require('../services/notificationService').default;
+import Patient from '../models/Patient.js';
+import { predictRisk } from '../services/aiService.js';
+import sendSMS from '../services/notificationService.js';
 
 // Register new patient and calculate risk
-exports.registerPatient = async (req, res) => {
+export const registerPatient = async (req, res) => {
   try {
     const { nationalId, name, age, hpvStatus, phone, clinician } = req.body;
 
@@ -17,7 +17,7 @@ exports.registerPatient = async (req, res) => {
     const riskScore = await predictRisk({
       age,
       hpvStatus,
-      screeningCount: 0 // You can extend this to actual screening count if available
+      screeningCount: 0 // extend as needed
     });
 
     // Create patient document
@@ -46,7 +46,7 @@ exports.registerPatient = async (req, res) => {
 };
 
 // Schedule follow-up appointment
-exports.scheduleFollowUp = async (req, res) => {
+export const scheduleFollowUp = async (req, res) => {
   try {
     const { patientId, date } = req.body;
 
@@ -69,14 +69,14 @@ exports.scheduleFollowUp = async (req, res) => {
   }
 };
 
-// Get patients with high risk score
-exports.getHighRiskPatients = async (req, res) => {
+// Get high-risk patients
+export const getHighRiskPatients = async (req, res) => {
   try {
-    const threshold = 0.7; // Define your risk threshold here
+    const threshold = 0.7; // risk threshold
 
     const highRiskPatients = await Patient.find({ riskScore: { $gt: threshold } })
-      .populate('clinician', 'name email') // Populate clinician info if linked
-      .select('-__v'); // Exclude internal fields if desired
+      .populate('clinician', 'name email')
+      .select('-__v');
 
     res.json(highRiskPatients);
   } catch (err) {
@@ -84,8 +84,27 @@ exports.getHighRiskPatients = async (req, res) => {
     res.status(500).json({ error: 'Server error while fetching high-risk patients' });
   }
 };
-// This code defines the patient controller for the Cervical Cancer Platform.
-// It includes functions for registering new patients, scheduling follow-up appointments,
-// and retrieving high-risk patients based on their risk scores.
-// The `registerPatient` function calculates the risk score using an AI service and sends an SMS
-// notification to the patient upon registration.
+
+// Get logged-in patient profile
+export const getPatientProfile = async (req, res) => {
+  try {
+    // Assumes req.patient._id is set by auth middleware
+    const patientId = req.patient._id;
+
+    const patient = await Patient.findById(patientId).select('-__v -password');
+    if (!patient) {
+      return res.status(404).json({ error: 'Patient not found' });
+    }
+
+    res.json(patient);
+  } catch (err) {
+    console.error('Get Patient Profile Error:', err);
+    res.status(500).json({ error: 'Server error while fetching patient profile' });
+  }
+};
+
+// (Example) Patient login function (implement as needed)
+export const loginPatient = async (req, res) => {
+  // Implement login logic, e.g., verify credentials, generate JWT
+  res.status(501).json({ message: 'loginPatient not implemented' });
+};

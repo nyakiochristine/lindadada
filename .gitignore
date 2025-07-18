@@ -1,1 +1,24 @@
 .env
+nodemodules/
+
+/node_modules
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Production build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+
+.vscode/
+.idea/
+
+

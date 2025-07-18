@@ -1,6 +1,6 @@
-const cron = require('node-cron');
-const Patient = require('../models/Patient');
-const { sendSMS } = require('./notificationService');
+import cron from 'node-cron';
+import Patient from '../models/Patient.js';
+import { sendSMS } from './notificationService.js';
 
 cron.schedule('0 8 * * *', async () => {
   try {
@@ -20,8 +20,10 @@ cron.schedule('0 8 * * *', async () => {
 
     for (const patient of patients) {
       if (patient.phone) {
-        await sendSMS(patient.phone, 
-          `Reminder: Your appointment is scheduled for tomorrow at ${patient.nextAppointment.toLocaleString()}`);
+        await sendSMS(
+          patient.phone,
+          `Reminder: Your appointment is scheduled for tomorrow at ${patient.nextAppointment.toLocaleString()}`
+        );
       }
     }
 

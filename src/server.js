@@ -1,12 +1,25 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/authRoutes');
-const patientRoutes = require('./routes/patientRoutes');
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+import express from 'express';
+import cors from 'cors';
+import connectDB from './config/db.js';
+
+
+import authRoutes from './routes/authRoutes.js';
+import patientRoutes from './routes/patientRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+import clinicianRoutes from './routes/clinicianRoutes.js';
+import appointmentRoutes from './routes/appointmentRoutes.js';
+import inventoryRoutes from './routes/InventoryRoutes.js';  // note lowercase 'i'
+
+
 
 // Import and initialize cron job (runs on import)
-require('./services/appointmentReminder');
+import './services/appointmentReminder.js';
+
+import { predictRisk } from './services/aiService.js';
 
 const app = express();
 
@@ -20,9 +33,12 @@ connectDB();
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/patients', patientRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/clinicians', clinicianRoutes);
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 // AI Endpoint
-const { predictRisk } = require('./services/aiService');
 app.post('/api/predict', async (req, res) => {
   try {
     const patientData = req.body;
@@ -36,6 +52,4 @@ app.post('/api/predict', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-// This code initializes the Express server for the Cervical Cancer Platform.
-// It sets up middleware for CORS and JSON parsing, connects to the MongoDB database,
-// and defines routes for authentication and patient management.
+// This code initializes the server for the Cervical Cancer Platform application.

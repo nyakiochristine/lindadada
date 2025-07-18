@@ -1,7 +1,7 @@
-const tf = require('@tensorflow/tfjs-node');
+import * as tf from '@tensorflow/tfjs-node';
 
-// Mock risk prediction model (replace with actual trained model)
-const predictRisk = async (patientData) => {
+// Mock risk prediction model (add actual model logicccc after ds team is done)
+export const predictRisk = async (patientData) => {
   // Preprocess data
   const { age, hpvStatus, screeningCount } = patientData;
   
@@ -23,6 +23,4 @@ const predictRisk = async (patientData) => {
   const prediction = model.predict(input);
   return prediction.dataSync()[0];
 };
-
-module.exports = { predictRisk };
-// This code defines a mock AI service for predicting cervical cancer risk based on patient data.
+//defines a mock AI service for predicting cervical cancer risk based on patient data.

@@ -1,18 +1,22 @@
-const express = require('express');
+import express from 'express';
+import { loginAdmin } from '../controllers/adminController.js';
+import { loginPatient, registerPatient } from '../controllers/patientController.js';
+
 const router = express.Router();
-const authController = require('../controllers/authController');
 
+// Admin login route
+router.post('/admin/login', loginAdmin);
 
+// Patient login route
+router.post('/patient/login', loginPatient);
 
+// Patient registration route
+router.post('/patient/register', registerPatient);
 
-// @route   POST api/auth/register
-// @desc    Register user
-router.post('/register', authController.register);
+// (Optional) Add clinician or staff login/register routes similarly
 
-// @route   POST api/auth/login
-// @desc    Login user
-router.post('/login', authController.login);
-
-module.exports = router;
+export default router;
 // This code defines the authentication routes for the Cervical Cancer Platform.
-// It includes routes for user registration and login, which are handled by the `authController`
+
+
+

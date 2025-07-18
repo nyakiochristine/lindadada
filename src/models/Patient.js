@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const PatientSchema = new mongoose.Schema({
   nationalId: {
@@ -35,7 +35,6 @@ const PatientSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Patient', PatientSchema);
+const Patient = mongoose.model('Patient', PatientSchema);
+export default Patient;
 // This code defines a Mongoose schema for a Patient model in a MongoDB database.
-// It includes fields for national ID, name, age, phone number, last screening date,
-// HPV status, risk score, next appointment date, clinician reference, and createdAt timestamp.
