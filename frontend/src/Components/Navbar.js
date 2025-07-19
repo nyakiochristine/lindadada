@@ -1,60 +1,50 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
+import styles from './Navbar.module.css';  // Assuming you use CSS modules
 
 export default function Navbar() {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
-  if (!user) return null; // Hide navbar if not logged in
+  if (!user) return null;
 
   return (
-    <nav style={styles.nav}>
-      <ul style={styles.ul}>
+    <nav className={styles.navbar}>
+      <ul className={styles.navlist}>
         <li>
-          <Link to="/" style={styles.link}>Dashboard</Link>
+          <NavLink 
+            to="/"
+            end  // exact match for root path
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            Dashboard
+          </NavLink>
         </li>
         <li>
-          <Link to="/patients" style={styles.link}>Patients</Link>
+          <NavLink 
+            to="/patients"
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            Patients
+          </NavLink>
         </li>
         <li>
-          <Link to="/send-followup" style={styles.link}>Send Follow-up SMS</Link>
+          <NavLink 
+            to="/send-followup"
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            Send Follow-up SMS
+          </NavLink>
         </li>
         <li>
-          <button onClick={handleLogout} style={styles.logoutButton}>Logout</button>
+          <button className={styles.logoutButton} onClick={logout}>Logout</button>
         </li>
       </ul>
     </nav>
   );
 }
-
-const styles = {
-  nav: {
-    backgroundColor: '#222',
-    padding: '1rem',
-  },
-  ul: {
-    listStyle: 'none',
-    display: 'flex',
-    gap: '1rem',
-    margin: 0,
-    padding: 0,
-    alignItems: 'center',
-  },
-  link: {
-    color: 'white',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-  },
-  logoutButton: {
-    background: 'transparent',
-    border: 'none',
-    color: 'white',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-  },
-};
