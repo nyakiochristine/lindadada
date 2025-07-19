@@ -14,8 +14,8 @@ cron.schedule('0 8 * * *', async () => {
     const patients = await Patient.find({
       nextAppointment: {
         $gte: startOfDay,
-        $lt: endOfDay
-      }
+        $lt: endOfDay,
+      },
     });
 
     for (const patient of patients) {

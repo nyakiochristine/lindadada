@@ -5,7 +5,7 @@ import axios from 'axios';
  * @param {string} phone - Recipient phone number in international format (e.g., +2547XXXXXXXX).
  * @param {string} message - The SMS message content.
  */
-const sendSMS = async (phone, message) => {
+export const sendSMS = async (phone, message) => {
   try {
     // Prepare form-urlencoded payload
     const params = new URLSearchParams();
@@ -35,19 +35,4 @@ const sendSMS = async (phone, message) => {
   }
 };
 
-/**
- * Stub function for testing SMS sending without actual API call.
- * Uncomment to use for local testing or development.
- */
-/*
-const sendSMS = async (phone, message) => {
-  console.log(`[Stub] Sending SMS to ${phone}: ${message}`);
-};
-*/
-
-export default { sendSMS };
-// This code defines a notification service for sending SMS messages using Africa's Talking API.
-// It includes a function to send SMS messages and handles errors gracefully.
-// The service can be used in various parts of the application to notify patients about appointments, risk scores, and other important information.
-// A stub function is also provided for testing purposes without making actual API calls.
-// The function uses URLSearchParams to format the payload for the API request and logs success or
+    

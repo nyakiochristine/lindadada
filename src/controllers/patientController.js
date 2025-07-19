@@ -1,6 +1,8 @@
 import Patient from '../models/Patient.js';
 import { predictRisk } from '../services/aiService.js';
-import sendSMS from '../services/notificationService.js';
+
+import { sendSMS } from '../services/notificationService.js'; 
+
 
 // Register new patient and calculate risk
 export const registerPatient = async (req, res) => {

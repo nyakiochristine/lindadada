@@ -21,7 +21,7 @@ adminSchema.methods.comparePassword = function(candidatePassword) {
 
 const Admin = mongoose.model('Admin', adminSchema);
 export default Admin;
-    `Your follow-up appointment is scheduled for ${date.toLocaleDateString()}.`;
+   
     // This code defines a Mongoose schema for an Admin model in a MongoDB database.}
     
       

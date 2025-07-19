@@ -1,6 +1,5 @@
 .env
-nodemodules/
-<<<<<<< HEAD
+
 
 /node_modules
 
@@ -23,5 +22,3 @@ Thumbs.db
 .idea/
 
 
-=======
->>>>>>> 1fbaa4e7b2dbca5d1de16c1bf0d6718db5d2df7d
