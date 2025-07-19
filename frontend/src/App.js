@@ -1,19 +1,27 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import LoginPage from './pages/LoginPage';
-// Import more pages as needed
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './Pages/LoginPage';
+import DashboardPage from './Pages/dashboard';
+import { useAuth } from './contexts/authContext';
 
 function App() {
+  const { user } = useAuth();
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        {/* Add more routes here */}
+        <Route 
+          path="/login" 
+          element={user ? <Navigate to="/" /> : <LoginPage />} 
+        />
+        <Route 
+          path="/" 
+          element={user ? <DashboardPage /> : <Navigate to="/login" />} 
+        />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
 
