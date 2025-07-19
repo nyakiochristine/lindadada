@@ -1,18 +1,40 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
-const AuthContext = createContext(null);
+// Create context
+const AuthContext = createContext();
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+// Hook to use in components
+export const useAuth = () => useContext(AuthContext);
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  // Add functions to log in, log out, and store JWT as needed
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
-// This code creates an authentication context for managing user state in a React application.
+
+  //  get user/token info from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // Login function:
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData));
+  };
+
+  // Logout function
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user');
+  };
+
+  // Context value to share
+  const value = {
+    user,
+    login,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

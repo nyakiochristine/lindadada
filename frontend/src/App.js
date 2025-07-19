@@ -13,17 +13,24 @@ function App() {
   return (
     <Router>
       {user && <Navbar />}
-      <Routes>
 
+      <Routes>
+        {/* Public login route */}
         <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
-  <Route element={<ProtectedRoute />}></Route>
-        <Route path="/" element={user ? <DashboardPage /> : <Navigate to="/login" />} />
-        <Route path="/patients" element={user ? <PatientsPage /> : <Navigate to="/login" />} />
-        <Route path="/send-followup" element={user ? <SendFollowupPage /> : <Navigate to="/login" />} />
+
+        {/* Protected routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/patients" element={<PatientsPage />} />
+          <Route path="/send-followup" element={<SendFollowupPage />} />
+        </Route>
+
+        {/* Redirect unknown paths */}
+        <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-// our main entry point of the application, setting up routes and navigation based on authentication status.
+
