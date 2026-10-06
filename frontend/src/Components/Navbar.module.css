@@ -1,5 +1,5 @@
 .navbar {
-  background: #173b3a;
+  background: #111014;
   padding: 18px max(24px, calc((100% - 1180px) / 2));
   display: flex;
   align-items: center;
@@ -9,7 +9,7 @@
   box-shadow: 0 3px 18px rgba(23, 59, 58, 0.14);
 }
 
-.brand { color: #fffaf4; text-decoration: none; font: 700 1.2rem Georgia, serif; letter-spacing: 0.02em; }
+.brand { color: #ffffff; text-decoration: none; font: 700 1.2rem Georgia, serif; letter-spacing: 0.02em; }
 
 .navlist {
   list-style: none;
@@ -21,7 +21,7 @@
 }
 
 .link {
-  color: #dcebe4;
+  color: #d8d2df;
   text-decoration: none;
   font-weight: bold;
   padding: 9px 12px;
@@ -31,20 +31,20 @@
 
 .link:hover,
 .link:focus {
-  background: #2d5c59;
-  color: #fffaf4;
+  background: #2b2632;
+  color: #ffffff;
   outline: none;
 }
 
 .active {
-  background: #e76f51;
-  color: #fffaf4;
+  background: #6d28d9;
+  color: #ffffff;
 }
 
 .logoutButton {
   background: transparent;
   border: none;
-  color: #dcebe4;
+  color: #d8d2df;
   font-weight: bold;
   cursor: pointer;
   padding: 9px 12px;
@@ -54,8 +54,8 @@
 
 .logoutButton:hover,
 .logoutButton:focus {
-  background: #2d5c59;
-  color: #fffaf4;
+  background: #2b2632;
+  color: #ffffff;
   outline: none;
 }
 

@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/authContext';
-import styles from './Navbar.module.css';  // Assuming you use CSS modules
+import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -9,17 +8,18 @@ export default function Navbar() {
   if (!user) return null;
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={styles.navbar} aria-label="Main navigation">
+      <NavLink to="/" end className={styles.brand}>Lindadada</NavLink>
       <ul className={styles.navlist}>
         <li>
           <NavLink 
             to="/"
-            end  // exact match for root path
+            end
             className={({ isActive }) =>
               isActive ? `${styles.link} ${styles.active}` : styles.link
             }
           >
-            Dashboard
+            Overview
           </NavLink>
         </li>
         <li>
@@ -39,11 +39,11 @@ export default function Navbar() {
               isActive ? `${styles.link} ${styles.active}` : styles.link
             }
           >
-            Send Follow-up SMS
+            Follow-ups
           </NavLink>
         </li>
         <li>
-          <button className={styles.logoutButton} onClick={logout}>Logout</button>
+          <button className={styles.logoutButton} onClick={logout}>Sign out</button>
         </li>
       </ul>
     </nav>
