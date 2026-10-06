@@ -6,6 +6,7 @@ import PatientsPage from './Pages/PatientsPage';
 import SendFollowupPage from './Pages/SendFollowupPage';
 import { useAuth } from './contexts/authContext';
 import ProtectedRoute from './Components/ProtectedRoute';
+import './App.css';
 
 function App() {
   const { user } = useAuth();
@@ -14,6 +15,7 @@ function App() {
     <Router>
       {user && <Navbar />}
 
+      <main className="app-shell">
       <Routes>
         {/* Public login route */}
         <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
@@ -28,6 +30,7 @@ function App() {
         {/* Redirect unknown paths */}
         <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />
       </Routes>
+      </main>
     </Router>
   );
 }
