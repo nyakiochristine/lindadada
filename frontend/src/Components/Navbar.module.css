@@ -1,53 +1,65 @@
 .navbar {
-  background: #E67E80;
-  padding: 1rem;
+  background: #173b3a;
+  padding: 18px max(24px, calc((100% - 1180px) / 2));
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 3px 18px rgba(23, 59, 58, 0.14);
 }
+
+.brand { color: #fffaf4; text-decoration: none; font: 700 1.2rem Georgia, serif; letter-spacing: 0.02em; }
 
 .navlist {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 1rem;
+  gap: 6px;
+  align-items: center;
 }
 
 .link {
-  color: #FFFFFF;
+  color: #dcebe4;
   text-decoration: none;
   font-weight: bold;
-  padding: 0.5em 1em;
+  padding: 9px 12px;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
 }
 
 .link:hover,
 .link:focus {
-  background: #F7CAC9;
-  color: #E67E80;
+  background: #2d5c59;
+  color: #fffaf4;
   outline: none;
 }
 
 .active {
-  background: #A7C7E7;
-  color: #4A4A4A;
+  background: #e76f51;
+  color: #fffaf4;
 }
 
 .logoutButton {
   background: transparent;
   border: none;
-  color: #FFFFFF;
+  color: #dcebe4;
   font-weight: bold;
   cursor: pointer;
-  padding: 0.5em 1em;
+  padding: 9px 12px;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
 }
 
 .logoutButton:hover,
 .logoutButton:focus {
-  background: #F7CAC9;
-  color: #E67E80;
+  background: #2d5c59;
+  color: #fffaf4;
   outline: none;
+}
+
+@media (max-width: 620px) {
+  .navbar { align-items: flex-start; flex-direction: column; padding: 16px; }
+  .navlist { flex-wrap: wrap; }
 }

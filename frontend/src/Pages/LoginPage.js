@@ -7,11 +7,14 @@ export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [msg, setMsg] = useState('');
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMsg('');
     try {
       const data = await loginAdmin(username, password); 
       
@@ -21,35 +24,40 @@ export default function LoginPage() {
         token: data.token,
       });
 
-      setMsg('Login successful');
-
-      // Redirect to dashboard
       navigate('/');
     } catch (err) {
-      setMsg('Login failed: ' + (err?.response?.data?.message || err.message));
+      setMsg(err?.response?.data?.message || 'We could not sign you in. Check your details and try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
-      <h2>Admin Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
+    <main className="login-page">
+      <section className="login-panel">
+        <div className="login-mark">L</div>
+        <h1>Welcome back</h1>
+        <p>Sign in to coordinate patient care.</p>
+      <form className="form-grid" onSubmit={handleSubmit}>
+        <label className="form-field">Username
+        <input className="field-input"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          placeholder="Username"
           required
         />
-        <input
+        </label>
+        <label className="form-field">Password
+        <input className="field-input"
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          placeholder="Password"
           required
         />
-        <button type="submit">Log In</button>
+        </label>
+        <button className="button-primary" type="submit" disabled={loading}>{loading ? 'Signing in...' : 'Sign in'}</button>
       </form>
-      {msg && <p>{msg}</p>}
-    </div>
+      {msg && <div className="form-message error" role="alert">{msg}</div>}
+      </section>
+    </main>
   );
 }
